@@ -1,0 +1,10 @@
+# Don't add the environment files
+
+venv-flask-diary/
+
+# Exclude on MAC devices
+.DS_Store
+
+**/*.pyc
+
+**/__pycache__
