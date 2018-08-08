@@ -1,10 +1,11 @@
-# Don't add the environment files
-
-venv-flask-diary/
+# Don't add the virtualenv folder
+venv-drf-diary/
 
 # Exclude on MAC devices
 .DS_Store
 
+# Python files
 **/*.pyc
-
 **/__pycache__
+
+**/.sonarlint
