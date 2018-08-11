@@ -1,5 +1,4 @@
 import json
-import ujson
 
 from django.test import TestCase
 from rest_framework import status
