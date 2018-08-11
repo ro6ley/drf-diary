@@ -10,4 +10,4 @@ venv-drf-diary/
 
 **/.sonarlint
 
-drfdiary/db.sqlite3
+**/db.sqlite3
