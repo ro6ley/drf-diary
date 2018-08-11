@@ -9,3 +9,5 @@ venv-drf-diary/
 **/__pycache__
 
 **/.sonarlint
+
+drfdiary/db.sqlite3
