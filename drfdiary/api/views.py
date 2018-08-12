@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import permissions
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 from .permissions import IsOwner
 from .serializers import EntrySerializer, UserSerializer
