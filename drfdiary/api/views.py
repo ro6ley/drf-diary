@@ -40,3 +40,20 @@ class CreateUserView(generics.CreateAPIView):
     model = get_user_model()
     permission_classes = (permissions.AllowAny)
     serializer_class = UserSerializer
+
+
+class UserView(generics.ListAPIView):
+    """
+    View to list the users
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetailsView(generics.RetrieveAPIView):
+    """
+    View to retrieve a user
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
