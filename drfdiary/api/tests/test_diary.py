@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from django.contrib.auth.models import User
 
-from .models import Entry
+from api.models import Entry
 
 
 class ModelTestCase(TestCase):
@@ -66,7 +66,7 @@ class ViewTestCase(TestCase):
         """
         new_client = APIClient()
         res = new_client.get('/api/entries/', kwargs={'pk': 3}, format="json")
-        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_api_can_get_an_entry(self):
         """
