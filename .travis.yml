@@ -6,7 +6,7 @@ python:
 services: postgresql
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=drfdiary.settings
+  # - export DJANGO_SETTINGS_MODULE=drfdiary.settings
   - export PYTHONPATH=$HOME/builds/nairobley/drf-diary
   - export PIP_USE_MIRRORS=true
 
