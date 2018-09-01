@@ -24,8 +24,7 @@ You need the following to be able to run the project:
 
 ## Setting Up for Development
 
-These are instructions for setting up HealthChecks Django app
-in development environment.
+These are instructions for setting up Diary API in development environment.
 
 * prepare directory for project code and virtualenv:
 ```
@@ -75,19 +74,16 @@ visit `http://localhost:8080/admin`
 
 ## Database Configuration
 
-Database configuration is stored in `hc/settings.py` and can be overriden
-in `hc/local_settings.py`. The default database engine is SQLite. To use
-PostgreSQL, create `hc/local_settings.py` if it does not exist, and put the
-following in it, changing it as neccessary:
+Database configuration is stored in `drfdiary/settings.py`.
+The default database engine is Postgres. 
+
+To use SQLite update `drfdiary/settings.py` as follows:
 
 ```
   DATABASES = {
       'default': {
-          'ENGINE':   'django.db.backends.postgresql',
-          'NAME':     'your-database-name-here',
-          'USER':     'your-database-user-here',
-          'PASSWORD': 'your-database-password-here',
-          'TEST': {'CHARSET': 'UTF8'}
+          'ENGINE': 'django.db.backends.sqlite3',
+          'NAME': 'drfdiary_dev.db',
       }
   }
 ```
@@ -102,7 +98,7 @@ To run the tests:
   $ ./manage.py test
 ```
 
-## Docker Images
+## Docker Image
 
 Alternatively, you can create a docker image for development as well. This image will contain an instance of the application running with django's development server using a sqlite database and can be used to quickly setup a development instance.
 
@@ -135,8 +131,8 @@ Alternatively, you can create a docker image for development as well. This image
 
 ## Built With
 
-* [Django](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Django REST Framework](https://maven.apache.org/) - Dependency Management
+* [Django](https://www.djangoproject.com/) - The web framework used
+* [Django REST Framework](http://www.django-rest-framework.org/) - The framework used to build the API
 
 ## Authors
 
