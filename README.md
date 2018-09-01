@@ -69,7 +69,7 @@ in development environment.
   $ ./manage.py runserver
 ```
 
-The site should now be running at `http://localhost:8080`
+The site should now be running at `http://localhost:8080/docs`
 To log into Django administration site as a super user,
 visit `http://localhost:8080/admin`
 
@@ -111,7 +111,7 @@ Alternatively, you can create a docker image for development as well. This image
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'drfdiary_dev',
+            'NAME': 'drfdiary_dev.db',
         }
     }
   ```
