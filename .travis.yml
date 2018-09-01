@@ -9,7 +9,6 @@ addons:
 services: postgresql
 
 before_install:
-  # - export DJANGO_SETTINGS_MODULE=drfdiary.settings
   - export PYTHONPATH=$HOME/builds/nairobley/drf-diary
   - export PIP_USE_MIRRORS=true
 
@@ -26,5 +25,4 @@ script:
 
 # run coveralls after successful tests
 after_success:
-
   - coveralls
