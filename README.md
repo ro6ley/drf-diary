@@ -138,10 +138,11 @@ Alternatively, you can create a docker image for development as well. This image
 
 * [Django](https://www.djangoproject.com/) - The web framework used
 * [Django REST Framework](http://www.django-rest-framework.org/) - The framework used to build the API
+* [Django REST Auth](https://django-rest-auth.readthedocs.io/en/latest/) - Django-rest-auth provides a set of REST API endpoints for Authentication and Registration
 
 ## Authors
 
-* **Robley Gori** - *Initial work* - [Robley Gori](https://github.com/NaiRobley)
+* **[Robley Gori](https://github.com/NaiRobley)** - *Initial work*
 
 See also the list of [contributors](https://github.com/NaiRobley/drf-diary/contributors) who participated in this project.
 
