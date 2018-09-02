@@ -23,19 +23,8 @@ class EntrySerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     """
-    Serializer class to handle user registration
+    Serializer class to handle user listing
     """
-    password = serializers.CharField(write_only=True)
-
-    def create(self, validated_data):
-
-        user = UserModel.objects.create(
-            username=validated_data['username']
-        )
-        user.set_password(validated_data['password'])
-        user.save()
-
-        return user
 
     class Meta:
         model = UserModel    
