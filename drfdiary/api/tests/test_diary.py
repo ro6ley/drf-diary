@@ -54,7 +54,7 @@ class ViewTestCase(TestCase):
         """
         Test user registration via the API
         """
-        response = self.client.post('/api/v1/rest-auth/registration/', 
+        response = self.client.post('/api/v1/accounts/registration/', 
                                     {
                                         "username": "robley",
                                         "password1": "0@qwer687",
