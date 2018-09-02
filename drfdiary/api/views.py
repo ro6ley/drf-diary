@@ -34,15 +34,6 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated, IsOwner)
 
 
-class CreateUserView(generics.CreateAPIView):
-    """
-    Class to handle the registration of users in the API
-    """
-    model = get_user_model()
-    permission_classes = (permissions.AllowAny)
-    serializer_class = UserSerializer
-
-
 class UserView(generics.ListAPIView):
     """
     View to list the users
