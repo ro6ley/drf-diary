@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v1/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)
+[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v1/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/NaiRobley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/NaiRobley/drf-diary?branch=master)
 
 # Diary
 
@@ -68,9 +68,14 @@ These are instructions for setting up Diary API in development environment.
   $ ./manage.py runserver
 ```
 
-The site should now be running at `http://localhost:8080/docs`
+The site should now be running at `http://localhost:8080/`.
+
 To log into Django administration site as a super user,
 visit `http://localhost:8080/admin`
+
+## Documentation
+
+Once up and running the documentation is available at: `http://localhost:8080/docs`
 
 ## Database Configuration
 
