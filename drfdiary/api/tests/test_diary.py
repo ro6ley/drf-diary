@@ -144,6 +144,23 @@ class ViewTestCase(TestCase):
         response = client.get('/api/v1/entries/{}/'.format(response_content["id"]))
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+    def test_cannot_update_another_user_entry(self):
+        """
+        Test that no other user can update a user's entry
+        """
+        client = APIClient()
+        # create a new user
+        new_user = User.objects.create(username="another_nerd")
+        # log them is
+        self.client.force_authenticate(user=new_user)
+        # get the entry we created with the user in the setup method
+        response_content = json.loads(self.response.content.decode("utf-8"))
+        response = client.put(
+                              '/api/v1/entries/{}/'.format(response_content["id"]), 
+                              {"content": "I will not be updated"},
+                              format="json")
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
+
     def test_api_can_delete_an_entry(self):
         """
         Test the deletion of a given diary entry
