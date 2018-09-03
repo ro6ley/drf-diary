@@ -77,8 +77,6 @@ visit `http://localhost:8080/admin`
 
 Once up and running the documentation is available at: `http://localhost:8080/docs`
 
-<<<<<<< HEAD
-=======
 The endpoints in summary:
 
 | Endpoint                                         | Functionality                      |
@@ -99,7 +97,6 @@ The endpoints in summary:
 | PUT /api/v1/accounts/user/                       | Update a user's details            |
 | PATCH /api/v1/accounts/user/                     | Partially update a user's details  |
 
->>>>>>> 58416ee... chore: add documentation summary on README.
 ## Database Configuration
 
 Database configuration is stored in `drfdiary/settings.py`.
