@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v1/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/NaiRobley/drf-diary/badge.svg?branch=master)](https://coveralls.io/github/NaiRobley/drf-diary?branch=master)
+[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v1/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/NaiRobley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/NaiRobley/drf-diary?branch=master)
 
 # Diary
 
@@ -96,7 +96,6 @@ The endpoints in summary:
 | GET /api/v1/accounts/user/                       | Fetch a user's details             |
 | PUT /api/v1/accounts/user/                       | Update a user's details            |
 | PATCH /api/v1/accounts/user/                     | Partially update a user's details  |
-
 
 ## Database Configuration
 
