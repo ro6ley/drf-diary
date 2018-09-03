@@ -93,8 +93,19 @@ DATABASES = {
         'PASSWORD': '',
         'HOST':     'localhost',
         'PORT':     '',
-    }
+    },
+    'sqlite': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'drfdiary_dev.db',
+    }    
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'drfdiary_dev.db',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

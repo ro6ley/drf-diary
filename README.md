@@ -77,6 +77,29 @@ visit `http://localhost:8080/admin`
 
 Once up and running the documentation is available at: `http://localhost:8080/docs`
 
+<<<<<<< HEAD
+=======
+The endpoints in summary:
+
+| Endpoint                                         | Functionality                      |
+|:------------------------------------------------ |:---------------------------------- |
+| GET /api/v1/entries/                             | Fetch all entries                  |
+| GET /api/v1//entries/<entryId>/                  | Fetch a single entry               |
+| POST /api/v1//entries/                           | Create an entry                    |
+| PUT /api/v1//entries/<entryId>/                  | Modify an entry                    |
+| POST /api/v1/get-token/                          | Obtain a token                     |
+| POST /api/v1/accounts/login/                     | User Login                         |
+| POST /api/v1/accounts/logout/                    | User Logout                        |
+| POST /api/v1/accounts/password/change/           | Update user password               |
+| POST /api/v1/accounts/password/reset/            | Reset user password                |
+| POST /api/v1/accounts/password/reset/confirm/    | Reset user password                |
+| POST /api/v1/accounts/registration/              | User sign up                       |
+| POST /api/v1/accounts/registration/verify-email/ | Email verification upon sign up    |
+| GET /api/v1/accounts/user/                       | Fetch a user's details             |
+| PUT /api/v1/accounts/user/                       | Update a user's details            |
+| PATCH /api/v1/accounts/user/                     | Partially update a user's details  |
+
+>>>>>>> 58416ee... chore: add documentation summary on README.
 ## Database Configuration
 
 Database configuration is stored in `drfdiary/settings.py`.
