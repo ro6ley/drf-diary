@@ -6,7 +6,7 @@ Diary is an online journal where users can pen down their thoughts and feelings.
 
 The building blocks are:
 
-* Python 3
+* Python 3.5
 * Django 2.1
 * PostgreSQL
 
