@@ -1,8 +1,10 @@
-FROM python:3
+FROM python:3.5-alpine
 
 MAINTAINER Robley Gori
 
 EXPOSE 8000
+
+RUN apk add --no-cache gcc postgresql-dev python3-dev musl-dev
 
 ADD . /drf-diary
 
