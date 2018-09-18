@@ -3,8 +3,6 @@ import json
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
-from django.urls import reverse
-
 from django.contrib.auth.models import User
 
 from api.models import Entry
@@ -47,14 +45,16 @@ class ViewTestCase(TestCase):
         # Initialize the client and force it to use auth
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
-        self.entry_data = {"content": "Dear Diary, it's been so long", "owner": self.user.id}
-        self.response = self.client.post('/api/v1/entries/', self.entry_data, format="json")
-    
+        self.entry_data = {
+            "content": "Dear Diary, it's been so long", "owner": self.user.id}
+        self.response = self.client.post(
+            '/api/v1/entries/', self.entry_data, format="json")
+
     def test_can_create_a_user(self):
         """
         Test user registration via the API
         """
-        response = self.client.post('/api/v1/accounts/registration/', 
+        response = self.client.post('/api/v1/accounts/registration/',
                                     {
                                         "username": "robley",
                                         "password1": "0@qwer687",
@@ -75,7 +75,8 @@ class ViewTestCase(TestCase):
         Test that creation of an entry requires authentication
         """
         client = APIClient()
-        response = client.post('/api/v1/entries/', {"content": "I cannot be created"}, format="json")
+        response = client.post(
+            '/api/v1/entries/', {"content": "I cannot be created"}, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_api_can_list_all_users(self):
@@ -108,7 +109,8 @@ class ViewTestCase(TestCase):
         """
         response_content = json.loads(self.response.content.decode("utf-8"))
         client = APIClient()
-        response = client.get('/api/v1/entries/{}/'.format(response_content["id"]))
+        response = client.get(
+            '/api/v1/entries/{}/'.format(response_content["id"]))
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_api_can_update_an_entry(self):
@@ -117,7 +119,8 @@ class ViewTestCase(TestCase):
         """
         entry = Entry.objects.get()
         url = "/api/v1/entries/{}/".format(entry.id)
-        response = self.client.put(url, {"content": "I am going to be updated"}, format="json")
+        response = self.client.put(
+            url, {"content": "I am going to be updated"}, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_api_cannot_update_entry_without_auth(self):
@@ -127,7 +130,8 @@ class ViewTestCase(TestCase):
         client = APIClient()
         entry = Entry.objects.get()
         url = "/api/v1/entries/{}/".format(entry.id)
-        response = client.put(url, {"content": "I am going to be updated"}, format="json")
+        response = client.put(
+            url, {"content": "I am going to be updated"}, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_cannot_view_another_user_entry(self):
@@ -141,7 +145,8 @@ class ViewTestCase(TestCase):
         self.client.force_authenticate(user=new_user)
         # get the entry we created with the user in the setup method
         response_content = json.loads(self.response.content.decode("utf-8"))
-        response = client.get('/api/v1/entries/{}/'.format(response_content["id"]))
+        response = client.get(
+            '/api/v1/entries/{}/'.format(response_content["id"]))
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_cannot_update_another_user_entry(self):
@@ -156,10 +161,10 @@ class ViewTestCase(TestCase):
         # get the entry we created with the user in the setup method
         response_content = json.loads(self.response.content.decode("utf-8"))
         response = client.put(
-                              '/api/v1/entries/{}/'.format(response_content["id"]), 
-                              {"content": "I will not be updated"},
-                              format="json")
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)        
+            '/api/v1/entries/{}/'.format(response_content["id"]),
+            {"content": "I will not be updated"},
+            format="json")
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_api_can_delete_an_entry(self):
         """
