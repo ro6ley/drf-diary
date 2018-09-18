@@ -14,7 +14,7 @@ from .models import Entry, Category, Article
 # Create your views here.
 class CreateView(generics.ListCreateAPIView):
     """
-    This class defines the create behaviour of our rest API
+    View to handle the creation and listing of entries.
     """
     queryset = Entry.objects.all()
     serializer_class = EntrySerializer
@@ -29,7 +29,7 @@ class CreateView(generics.ListCreateAPIView):
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     """
-    This class handles the http GET, PUT and DELETE requests.
+    This class handles the management of individual entries.
     """
     queryset = Entry.objects.all()
     serializer_class = EntrySerializer
