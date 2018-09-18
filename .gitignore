@@ -1,6 +1,9 @@
 # Don't add the virtualenv folder
 venv-drf-diary/
 
+# Don't include migrations
+**/migrations/
+
 # Exclude on MAC devices
 .DS_Store
 
