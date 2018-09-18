@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Entry
+from .models import Entry, Category
 
 
 UserModel = get_user_model()
@@ -30,3 +30,12 @@ class UserSerializer(serializers.ModelSerializer):
         model = UserModel    
         fields = ('id', 'username', 'email', 'password')
         read_only_fields = ('id', 'username', 'email')
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    """
+    Serializer class to handle categories
+    """
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'description')
