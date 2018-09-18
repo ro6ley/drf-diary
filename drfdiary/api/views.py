@@ -5,8 +5,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 
 from .permissions import IsOwner
-from .serializers import EntrySerializer, UserSerializer
-from .models import Entry
+from .serializers import EntrySerializer, UserSerializer, CategorySerializer
+from .models import Entry, Category
 
 
 # Create your views here.
@@ -49,3 +49,11 @@ class UserDetailsView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class CategoryView(generics.ListAPIView):
+    """
+    View to handle listing of categories
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
