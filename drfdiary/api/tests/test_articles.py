@@ -83,7 +83,7 @@ class ArticleViewTestCase(TestCase):
         }
         response = self.client.post(
             category_url, article_data, format="json")
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)       
 
     def test_article_access_without_auth(self):
         """
