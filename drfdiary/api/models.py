@@ -12,8 +12,8 @@ class Entry(models.Model):
     This class represents the entry model.
     """
     content = models.CharField(max_length=255, blank=False, unique=True)
-    owner = models.ForeignKey('auth.user', 
-                              related_name="entries", 
+    owner = models.ForeignKey('auth.user',
+                              related_name="entries",
                               on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -30,7 +30,10 @@ class Category(models.Model):
     This class represents the Category model
     """
     name = models.CharField(max_length=255, blank=False, unique=True)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=True)
+    owner = models.ForeignKey('auth.user',
+                              related_name="categories",
+                              on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
@@ -39,6 +42,24 @@ class Category(models.Model):
         A representation of the model
         """
         return "{}: {}".format(self.name, self.description)
+
+
+class Article(models.Model):
+    """
+    Class to represent the articles
+    """
+    title = models.CharField(max_length=255, blank=False)
+    description = models.CharField(max_length=255, blank=True)
+    url = models.URLField(max_length=255)
+    read_status = models.BooleanField(default=False)
+    category = models.ForeignKey('Category',
+                                 related_name="category",
+                                 on_delete=models.SET_NULL,
+                                 null=True)
+    owner = models.ForeignKey(
+        'auth.user', related_name="owner", on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
 
 # This receiver handles token creation immediately a new user is created
