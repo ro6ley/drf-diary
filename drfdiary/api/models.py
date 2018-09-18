@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -22,6 +23,22 @@ class Entry(models.Model):
         Return a string representation of the model instance
         """
         return "{} : {}".format(self.date_created, self.content)
+
+
+class Category(models.Model):
+    """
+    This class represents the Category model
+    """
+    name = models.CharField(max_length=255, blank=False, unique=True)
+    description = models.CharField(max_length=255)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """
+        A representation of the model
+        """
+        return "{}: {}".format(self.name, self.description)
 
 
 # This receiver handles token creation immediately a new user is created
