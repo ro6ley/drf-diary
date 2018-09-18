@@ -19,7 +19,7 @@ before_script:
   - psql -c "CREATE DATABASE drfdiary_dev;" -U postgres
 
 script:
-  - coverage run --source=drfdiary drfdiary/manage.py test drfdiary/api --noinput
+  - coverage run --source=drfdiary drfdiary/manage.py test drfdiary/api --settings=settings.development --noinput
 
 # run coveralls after successful tests
 after_success:
