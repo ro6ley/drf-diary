@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.exceptions import PermissionDenied
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 
 from .permissions import IsOwner
-from .serializers import EntrySerializer, UserSerializer, CategorySerializer
-from .models import Entry, Category
+from .serializers import EntrySerializer, UserSerializer, CategorySerializer, \
+    ArticleSerializer
+from .models import Entry, Category, Article
 
 
 # Create your views here.
@@ -50,10 +52,67 @@ class UserDetailsView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
-class CategoryView(generics.ListAPIView):
+class CategoryView(generics.ListCreateAPIView):
     """
     View to handle listing of categories
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+    def perform_create(self, serializer):
+        """
+        Save the POST data when creating a new entry
+        """
+        serializer.save(owner=self.request.user)
+
+
+class CategoryDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    This class handles the http GET, PUT and DELETE requests fro categories.
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+
+class ArticleView(generics.ListCreateAPIView):
+    """
+    This class defines the create behaviour of the articles
+    """
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+    def perform_create(self, serializer):
+        """Save the post data when creating a new article."""
+        categories = Category.objects.filter(
+            owner=self.request.user).filter(id=self.kwargs['pk'])
+        if categories.count() == 0:
+            raise PermissionDenied(
+                "You do not have permission to perform this action.")
+        else:
+            serializer.save(owner=self.request.user, category=categories[0])
+
+    def get_queryset(self):
+        queryset = Article.objects.all()
+        categories = Category.objects.filter(owner=self.request.user)
+        if categories.count() == 0:
+            raise PermissionDenied(
+                "You do not have permission to perform this action.")
+        else:
+            category = categories.filter(id=self.kwargs['pk'])
+            queryset = queryset.filter(category__in=category)
+        return queryset
+
+
+class ArticleDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    This class handles the http GET, PUT and DELETE requests for articles.
+    """
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (
+        permissions.IsAuthenticated,
+        IsOwner)
+    lookup_field = 'id'
