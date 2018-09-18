@@ -16,9 +16,9 @@ class CreateView(generics.ListCreateAPIView):
     """
     View to handle the creation and listing of entries.
     """
-    queryset = Entry.objects.all()
-    serializer_class = EntrySerializer
     permission_classes = (permissions.IsAuthenticated, IsOwner)
+    serializer_class = EntrySerializer
+    queryset = Entry.objects.all()
 
     def perform_create(self, serializer):
         """
@@ -31,8 +31,8 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     """
     This class handles the management of individual entries.
     """
-    queryset = Entry.objects.all()
     serializer_class = EntrySerializer
+    queryset = Entry.objects.all()
     permission_classes = (permissions.IsAuthenticated, IsOwner)
 
 
