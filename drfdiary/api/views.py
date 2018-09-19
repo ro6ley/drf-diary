@@ -66,6 +66,10 @@ class CategoryView(generics.ListCreateAPIView):
         """
         serializer.save(owner=self.request.user)
 
+    def get_queryset(self):
+        queryset = Category.objects.filter(owner=self.request.user)
+        return queryset
+
 
 class CategoryDetailsView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -95,7 +99,7 @@ class ArticleView(generics.ListCreateAPIView):
             serializer.save(owner=self.request.user, category=categories[0])
 
     def get_queryset(self):
-        queryset = Article.objects.all()
+        queryset = Article.objects.filter(owner=self.request.user)
         categories = Category.objects.filter(owner=self.request.user)
         if categories.count() == 0:
             raise PermissionDenied(
