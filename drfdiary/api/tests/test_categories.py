@@ -59,7 +59,7 @@ class CategoryViewsTestCases(TestCase):
         """
         Test that an authenticated user can view categories
         """
-        response = self.client.get('/api/v1/categories/')
+        response = self.client.get('/api/v2/categories/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_unauthenticated_view_categories(self):
@@ -67,7 +67,7 @@ class CategoryViewsTestCases(TestCase):
         Test that an unauthenticated user cannot view categories
         """
         client = APIClient()
-        response = client.get('/api/v1/categories/')
+        response = client.get('/api/v2/categories/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_successful_category_creation(self):
@@ -76,7 +76,7 @@ class CategoryViewsTestCases(TestCase):
         """
         category_data = {"name": "Sampuli", "description": "Ditto"}
         response = self.client.post(
-            '/api/v1/categories/', category_data, format="json")
+            '/api/v2/categories/', category_data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_successful_category_updating(self):
@@ -85,12 +85,12 @@ class CategoryViewsTestCases(TestCase):
         """
         category_data = {"name": "Sampuli", "description": "Ditto"}
         create_response = self.client.post(
-            '/api/v1/categories/', category_data, format="json")
+            '/api/v2/categories/', category_data, format="json")
 
         response_content = json.loads(create_response.content.decode("utf-8"))
 
         new_category_data = {"name": "Sampuli B"}
-        update_url = '/api/v1/categories/{}/'.format(response_content["id"])
+        update_url = '/api/v2/categories/{}/'.format(response_content["id"])
 
         update_response = self.client.patch(
             update_url, new_category_data, format="json")
@@ -102,12 +102,12 @@ class CategoryViewsTestCases(TestCase):
         """
         category_data = {"name": "Sampuli", "description": "Ditto"}
         create_response = self.client.post(
-            '/api/v1/categories/', category_data, format="json")
+            '/api/v2/categories/', category_data, format="json")
 
         response_content = json.loads(create_response.content.decode("utf-8"))
 
         update_response = self.client.delete(
-            '/api/v1/categories/{}/'.format(response_content["id"]))
+            '/api/v2/categories/{}/'.format(response_content["id"]))
         self.assertEqual(update_response.status_code,
                          status.HTTP_204_NO_CONTENT)
 
@@ -118,7 +118,7 @@ class CategoryViewsTestCases(TestCase):
         # Create a category as initial user
         category_data = {"name": "Ditto", "description": "Ditto"}
         create_response = self.client.post(
-            '/api/v1/categories/', category_data, format="json")
+            '/api/v2/categories/', category_data, format="json")
 
         response_content = json.loads(create_response.content.decode("utf-8"))
 
@@ -128,7 +128,7 @@ class CategoryViewsTestCases(TestCase):
         # log them in
         client.force_authenticate(user=new_user)
 
-        category_url = '/api/v1/categories/{}/'.format(response_content["id"])
+        category_url = '/api/v2/categories/{}/'.format(response_content["id"])
 
         response = client.get(category_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -140,7 +140,7 @@ class CategoryViewsTestCases(TestCase):
         # Create a category as initial user
         category_data = {"name": "Ditto", "description": "Ditto"}
         create_response = self.client.post(
-            '/api/v1/categories/', category_data, format="json")
+            '/api/v2/categories/', category_data, format="json")
 
         response_content = json.loads(create_response.content.decode("utf-8"))
 
@@ -150,7 +150,7 @@ class CategoryViewsTestCases(TestCase):
         # log them in
         client.force_authenticate(user=new_user)
 
-        category_url = '/api/v1/categories/{}/'.format(response_content["id"])
+        category_url = '/api/v2/categories/{}/'.format(response_content["id"])
 
         response = client.put(category_url, {"name": "new name"})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
