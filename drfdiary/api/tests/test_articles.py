@@ -63,7 +63,7 @@ class ArticleViewTestCase(TestCase):
             "read_status": False,
             "owner": self.user.id
         }
-        article_url = '/api/v1/categories/{}/articles/'.format(
+        article_url = '/api/v2/categories/{}/articles/'.format(
             self.category.id)
         self.response = self.client.post(
             article_url, self.article_data, format="json")
@@ -73,7 +73,7 @@ class ArticleViewTestCase(TestCase):
         Test that an authenticated user can create an article in a category
         """
         category = Category.objects.get()
-        category_url = '/api/v1/categories/{}/articles/'.format(category.id)
+        category_url = '/api/v2/categories/{}/articles/'.format(category.id)
         article_data = {
             "url": "http://www.dummy.com",
             "title": "New One",
@@ -83,7 +83,7 @@ class ArticleViewTestCase(TestCase):
         }
         response = self.client.post(
             category_url, article_data, format="json")
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)       
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_article_access_without_auth(self):
         """
@@ -91,7 +91,7 @@ class ArticleViewTestCase(TestCase):
         """
         client = APIClient()
         category = Category.objects.get()
-        category_url = '/api/v1/categories/{}/articles/'.format(category.id)
+        category_url = '/api/v2/categories/{}/articles/'.format(category.id)
         response = client.get(category_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
@@ -100,7 +100,7 @@ class ArticleViewTestCase(TestCase):
         Test that an authenticated user can view their articles
         """
         category = Category.objects.get()
-        category_url = '/api/v1/categories/{}/articles/'.format(category.id)
+        category_url = '/api/v2/categories/{}/articles/'.format(category.id)
         response = self.client.get(category_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -113,7 +113,7 @@ class ArticleViewTestCase(TestCase):
         # get the entry we created with the user in the setup method
         response_content = json.loads(self.response.content.decode("utf-8"))
 
-        article_url = '/api/v1/categories/{}/articles/{}/'.format(
+        article_url = '/api/v2/categories/{}/articles/{}/'.format(
             response_content["category"], response_content["id"])
 
         # Update title
@@ -141,10 +141,10 @@ class ArticleViewTestCase(TestCase):
         }
         # Create an article
         creation_response = self.client.post(
-            '/api/v1/categories/{}/articles/'.format(category.id),
+            '/api/v2/categories/{}/articles/'.format(category.id),
             article_data, format="json")
         article = Article.objects.filter(category=category.id)
-        article_url = '/api/v1/categories/{}/articles/{}/'.format(
+        article_url = '/api/v2/categories/{}/articles/{}/'.format(
             category.id, article[0].id)
         response = self.client.delete(article_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -160,7 +160,7 @@ class ArticleViewTestCase(TestCase):
         client.force_authenticate(user=new_user)
         # get the entry we created with the user in the setup method
         response_content = json.loads(self.response.content.decode("utf-8"))
-        article_url = '/api/v1/categories/{}/articles/{}/'.format(
+        article_url = '/api/v2/categories/{}/articles/{}/'.format(
             self.category.id, response_content["id"])
         response = client.patch(
             article_url, {"title": "I will not be updated"}, format="json")
