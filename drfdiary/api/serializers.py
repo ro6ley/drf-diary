@@ -40,7 +40,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('id', 'name', 'description', 'owner')
+        fields = ('id', 'name', 'description', 'owner', 'date_created',
+                  'date_modified')
         read_only_fields = ('date_created', 'date_modified')
 
 
@@ -54,5 +55,5 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id', 'title', 'description', 'url', 'owner', 'category',
-                  'read_status')
+                  'read_status', 'date_created', 'date_modified')
         read_only_fields = ('date_created', 'date_modified')
