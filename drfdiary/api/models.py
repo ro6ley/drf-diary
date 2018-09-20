@@ -54,7 +54,7 @@ class Article(models.Model):
     read_status = models.BooleanField(default=False)
     category = models.ForeignKey('Category',
                                  related_name="category",
-                                 on_delete=models.SET_NULL,
+                                 on_delete=models.CASCADE,
                                  null=True)
     owner = models.ForeignKey(
         'auth.user', related_name="owner", on_delete=models.CASCADE)
