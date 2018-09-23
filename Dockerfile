@@ -16,4 +16,4 @@ RUN python drfdiary/manage.py makemigrations
 
 RUN python drfdiary/manage.py migrate
 
-CMD [ "python", "drfdiary/manage.py", "runserver", "0.0.0.0:8000" ]
+CMD [ "python", "drfdiary/manage.py", "runserver", "--settings=drfdiary.settings.development", "0.0.0.0:8000" ]

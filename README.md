@@ -1,12 +1,12 @@
-[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v1/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/NaiRobley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/NaiRobley/drf-diary?branch=master)
+[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v2/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/NaiRobley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/NaiRobley/drf-diary?branch=master)
 
 # Diary
 
-Diary is an online journal where users can pen down their thoughts and feelings. 
+Diary is an online journal where users can pen down their thoughts and feelings. You can also use it to track your online reading list by adding links to read later and mark them as `read` once read for convenience.
 
 The building blocks are:
 
-* Python 3
+* Python 3.5
 * Django 2.1
 * PostgreSQL
 
@@ -59,6 +59,7 @@ These are instructions for setting up Diary API in development environment.
 * create database tables:
 ```
   $ cd ~/drfdiary_project/drf-diary/drfdiary
+  $ ./manage.py makemigrations
   $ ./manage.py migrate
   $ ./manage createsuperuser
 ```
@@ -79,31 +80,45 @@ Once up and running the documentation is available at: `http://localhost:8080/do
 
 The endpoints in summary:
 
-| Endpoint                                         | Functionality                      |
-|:------------------------------------------------ |:---------------------------------- |
-| GET /api/v1/entries/                             | Fetch all entries                  |
-| GET /api/v1//entries/<entryId>/                  | Fetch a single entry               |
-| POST /api/v1//entries/                           | Create an entry                    |
-| PUT /api/v1//entries/<entryId>/                  | Modify an entry                    |
-| POST /api/v1/get-token/                          | Obtain a token                     |
-| POST /api/v1/accounts/login/                     | User Login                         |
-| POST /api/v1/accounts/logout/                    | User Logout                        |
-| POST /api/v1/accounts/password/change/           | Update user password               |
-| POST /api/v1/accounts/password/reset/            | Reset user password                |
-| POST /api/v1/accounts/password/reset/confirm/    | Reset user password                |
-| POST /api/v1/accounts/registration/              | User sign up                       |
-| POST /api/v1/accounts/registration/verify-email/ | Email verification upon sign up    |
-| GET /api/v1/accounts/user/                       | Fetch a user's details             |
-| PUT /api/v1/accounts/user/                       | Update a user's details            |
-| PATCH /api/v1/accounts/user/                     | Partially update a user's details  |
-
+| Endpoint                                                       | Functionality                      |
+|:-------------------------------------------------------------- |:---------------------------------- |
+| POST /api/v2/get-token/                                        | Obtain a token                     |
+| **Accounts**                                                   |                                    |
+| POST /api/v2/accounts/login/                                   | User Login                         |
+| POST /api/v2/accounts/logout/                                  | User Logout                        |
+| POST /api/v2/accounts/password/change/                         | Update user password               |
+| POST /api/v2/accounts/password/reset/                          | Reset user password                |
+| POST /api/v2/accounts/password/reset/confirm/                  | Reset user password                |
+| POST /api/v2/accounts/registration/                            | User sign up                       |
+| POST /api/v2/accounts/registration/verify-email/               | Email verification upon sign up    |
+| GET /api/v2/accounts/user/                                     | Fetch a user's details             |
+| PUT /api/v2/accounts/user/                                     | Update a user's details            |
+| PATCH /api/v2/accounts/user/                                   | Partially update a user's details  |
+| **Entries**                                                    |                                    |   
+| GET /api/v2/entries/                                           | Fetch all entries                  |
+| GET /api/v2/entries/<entryId>/                                 | Fetch a single entry               |
+| POST /api/v2/entries/                                          | Create an entry                    |
+| PUT /api/v2/entries/<entryId>/                                 | Modify an entry                    |
+| DELETE /api/v2/entries/<entryId>/                              | Delete an entry                    |
+| **Categories**                                                 |                                    |
+| GET /api/v2/categories/                                        | Fetch all categories               |
+| GET /api/v2/categories/\<categoryId>/                          | Fetch a single category            |
+| POST /api/v2/categories/                                       | Create a category                  |
+| PUT /api/v2/categories/\<categoryId>/                          | Modify a category                  |
+| DELETE /api/v2/categories/\<categoryId>/                       | Delete a category                  |
+| **Articles**                                                   |                                    |
+| GET /api/v2/categories/\<categoryId>/articles/                 | Fetch all articles in a category   |
+| GET /api/v2/categories/\<categoryId>/articles/\<articleID>/    | Fetch a single article             |
+| POST /api/v2/categories/                                       | Create an article                  |
+| PUT /api/v2/categories/\<categoryId>/articles/\<articleID>/    | Modify an article                  |
+| DELETE /api/v2/categories/\<categoryId>/articles/\<articleID>/ | Delete an article                  |
 
 ## Database Configuration
 
-Database configuration is stored in `drfdiary/settings.py`.
+Database configuration is stored in `drfdiary/settings/development.py`.
 The default database engine is Postgres. 
 
-To use SQLite update `drfdiary/settings.py` as follows:
+To use SQLite, update `drfdiary/settings/development.py` as follows:
 
 ```
   DATABASES = {
@@ -120,7 +135,7 @@ To run the tests:
 
 ```
   $ cd ~/drfdiary_project/drf-diary/drfdiary
-  $ ./manage.py test
+  $ ./manage.py test --settings=settings.testing
 ```
 
 ## Docker Image
