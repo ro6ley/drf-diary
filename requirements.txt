@@ -32,4 +32,4 @@ six==1.11.0
 South==1.0.2
 ujson==1.35
 uritemplate==3.0.0
-urllib3==1.23
+urllib3==1.24.2
