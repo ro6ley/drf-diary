@@ -9,7 +9,7 @@ Django==2.1
 django-allauth==0.36.0
 django-hashers-passlib==0.4
 django-rest-auth==0.9.3
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 docopt==0.6.2
 gunicorn==19.9.0
 idna==2.7
