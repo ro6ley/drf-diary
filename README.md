@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/NaiRobley/drf-diary.svg?branch=master)](https://travis-ci.org/NaiRobley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v2/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/NaiRobley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/NaiRobley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/NaiRobley/drf-diary?branch=master)
+[![Build Status](https://travis-ci.org/ro6ley/drf-diary.svg?branch=master)](https://travis-ci.org/ro6ley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v2/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/ro6ley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/ro6ley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/ro6ley/drf-diary?branch=master)
 
 # Diary
 
@@ -41,7 +41,7 @@ These are instructions for setting up Diary API in development environment.
 
 * check out project code:
 ```
-  $ git clone https://github.com/NaiRobley/drf-diary.git
+  $ git clone https://github.com/ro6ley/drf-diary.git
 ```
 
 * install requirements (Django, ...) into virtualenv:
@@ -177,9 +177,9 @@ Alternatively, you can create a docker image for development as well. This image
 
 ## Authors
 
-* **[Robley Gori](https://github.com/NaiRobley)** - *Initial work*
+* **[Robley Gori](https://github.com/ro6ley)** - *Initial work*
 
-See also the list of [contributors](https://github.com/NaiRobley/drf-diary/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ro6ley/drf-diary/contributors) who participated in this project.
 
 ## License
 
