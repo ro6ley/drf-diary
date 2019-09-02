@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ro6ley/drf-diary.svg?branch=master)](https://travis-ci.org/ro6ley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v2/badges/06c3c3319e917da59cbc/maintainability)](https://codeclimate.com/github/ro6ley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/ro6ley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/ro6ley/drf-diary?branch=master)
+[![Build Status](https://travis-ci.org/ro6ley/drf-diary.svg?branch=master)](https://travis-ci.org/ro6ley/drf-diary)  [![Maintainability](https://api.codeclimate.com/v1/badges/b72725c75226ed748d37/maintainability)](https://codeclimate.com/github/ro6ley/drf-diary/maintainability)  [![Coverage Status](https://coveralls.io/repos/github/ro6ley/drf-diary/badge.png?branch=master)](https://coveralls.io/github/ro6ley/drf-diary?branch=master)
 
 # Diary
 
