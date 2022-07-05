@@ -30,6 +30,6 @@ requests-oauthlib==1.0.0
 RestAuthCommon==0.7.0
 six==1.11.0
 South==1.0.2
-ujson==1.35
+ujson==5.4.0
 uritemplate==3.0.0
 urllib3==1.26.5
